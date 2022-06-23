@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
+import { Task } from './tasks-state/task.entity';
+import * as todoActions from './tasks-state/task.actions';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
@@ -10,18 +14,23 @@ export class AppComponent {
   isCreatingTask = false;
   isDeletingTask = false;
 
-  task = {
-    title: '',
-    description: '',
-    time: new Date(),
-    id: 56
-  }
+  task: Task;
 
-  tasks = [{ title: 'the title guiasdv iuasdhv uiadgsvhiausdv adishg sfiubisdufhgiu sdiufguisdhfiguhsdif guisdfguis dfuigsdfgghui  ', description: 'the description', time: new Date(), isActive: false, id:2 },
-  { title: 'the title ', description: 'the description', time: new Date(), isActive: false, id:3 },
-  { title: 'the title ', description: 'the description', time: new Date(), isActive: true, id:4 },
-  { title: 'the title ', description: 'the description', time: new Date(), isActive: false, id:5 },
-  { title: 'the title ', description: 'the description', time: new Date(), isActive: false, id:6 }]
+  tasks: any = [];
+  destroy$: Subject<boolean> = new Subject<boolean>();
+
+  constructor(private store: Store) {
+
+    this.task = new Task();
+
+    this.store.select(todoActions.getTasks).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((data : any) => this.tasks = data.tasks);
+  }
+  // constructor(private todoService: ToDoService) {
+  //   console.log('fetching API');
+  //     this.todoService.getTasks().toPromise().then(d => this.tasks = d )
+  // }
 
   createTask() {
 

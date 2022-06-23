@@ -1,10 +1,13 @@
+
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class DataService {
+export class ToDoService {
 
   constructor(private http: HttpClient) { }
 
@@ -15,11 +18,11 @@ export class DataService {
   }
 
   addTask(task: any) {
-    return this.http.post(this.rootURL + '/task', {task});
+    return this.http.post(this.rootURL + '/task', { task });
   }
 
   editTask(task: any) {
-    return this.http.put(this.rootURL + '/task', {task});
+    return this.http.put(this.rootURL + '/task', { task });
   }
 
   deleteTask(taskId: any) {

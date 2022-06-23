@@ -40,7 +40,10 @@
   <mat-expansion-panel *ngFor="let taskItem of tasks">
     <mat-expansion-panel-header [ngClass]="taskItem.isActive ? 'active' : 'finished' ">
       <mat-panel-title>
-        {{ taskItem.title }} <small *ngIf="taskItem.isActive"> &nbsp;&nbsp; Pending </small>
+        <mat-icon class="done-icon" *ngIf="!taskItem.isActive">check_circle</mat-icon>
+        <mat-icon class="pending-icon" *ngIf="taskItem.isActive">bookmark</mat-icon>
+        {{ taskItem.title }}
+        <small *ngIf="taskItem.isActive"> &nbsp;&nbsp; Pending </small>
       </mat-panel-title>
       <mat-panel-description>
         {{taskItem.time | date:'medium'}}
