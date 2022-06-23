@@ -4,8 +4,13 @@
   "description": "test angular project for the interview",
   "main": "index.js",
   "scripts": {
+    "start": "node app.js",
+    "dev": "node app.js set NODE_ENV='development'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
 }
