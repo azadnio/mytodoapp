@@ -1,0 +1,62 @@
+<div class="container">
+
+  <h1>My To Do App</h1>
+
+  <mat-card  class="panel-container">
+
+    <div class="panel left">
+
+        <mat-card-title>Task</mat-card-title>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Title</mat-label>
+          <input matInput type="text" [(ngModel)]="task.title">
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field  appearance="outline">
+          <mat-label>Description</mat-label>
+          <textarea matInput [(ngModel)]="task.description"></textarea>
+        </mat-form-field>
+
+        <mat-card-actions>
+          <button mat-button class="create-btn" (click)="createTask()" mat-flat-button color="primary">Create</button>
+        </mat-card-actions>
+
+
+    </div>
+
+    <div class="panel right">
+      <app-pie-chart></app-pie-chart>
+    </div>
+
+  </mat-card>
+
+
+
+  <h3>List of tasks</h3>
+
+  <mat-expansion-panel *ngFor="let taskItem of tasks">
+    <mat-expansion-panel-header [ngClass]="taskItem.isActive ? 'active' : 'finished' ">
+      <mat-panel-title>
+        {{ taskItem.title }} <small *ngIf="taskItem.isActive"> &nbsp;&nbsp; Pending </small>
+      </mat-panel-title>
+      <mat-panel-description>
+        {{taskItem.time | date:'medium'}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <p>
+      {{ taskItem.description }}
+    </p>
+
+    <mat-action-row>
+      <button mat-button color="primary" mat-stroked-button (click)="markAsDone(taskItem)" *ngIf="taskItem.isActive">Mark As Done</button>
+      <button mat-button color="warn" mat-stroked-button (click)="deleteTask(taskItem.id)">Delete</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+
+
+</div>

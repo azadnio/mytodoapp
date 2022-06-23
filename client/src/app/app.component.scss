@@ -1,0 +1,70 @@
+.container{
+
+    h1 {
+      text-align: center;
+    }
+
+    width: 50%;
+    margin: auto;
+    min-width: 50em;
+
+    .panel-container {
+      margin-bottom: 2em;
+      display: flex;
+
+      .panel {
+
+        &.left{
+          flex: 1;
+        }
+
+        &.right{
+          width: 40%;
+          display: flex;
+          align-items: center;
+          padding: 10px;
+        }
+
+        mat-form-field {
+          min-width: 100%;
+        }
+
+        .create-btn {
+          width: 100%;
+          padding: 10px;
+        }
+      }
+    }
+
+    mat-expansion-panel + mat-expansion-panel{
+      margin-top: 0.5em;
+    }
+
+    mat-expansion-panel-header {
+      &.active {
+        background-color: #b3d3e773;
+      }
+      &.finished {
+        background-color: #a4e3b447;
+      }
+
+    }
+
+
+    mat-panel-title {
+      font-size: 18px;
+      color: #3c3c7a;
+
+
+      small {
+        font-size: small;
+        font-style: italic;
+        color: #afa9a9;
+      }
+    }
+
+    mat-panel-description {
+      justify-content: right;
+      font-size: small;
+    }
+}
