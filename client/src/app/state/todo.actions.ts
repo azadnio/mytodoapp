@@ -2,33 +2,33 @@
 import { createAction, props } from '@ngrx/store';
 import { TodoTask } from '../task.model';
 
-export const addPost = createAction('[todo page] add task', props<{ todoTask: TodoTask }>());
-export const addPostSuccess = createAction(
+export const ddTask = createAction('[todo page] add task', props<{ todoTask: TodoTask }>());
+export const addTaskSuccess = createAction(
   '[todo page] add task success',
   props<{ todoTask: TodoTask }>()
 );
 
-export const updatePost = createAction(
+export const updateTask = createAction(
   '[todo page] update task',
   props<{ todoTask: TodoTask }>()
 );
 
-export const updatePostSuccess = createAction(
+export const updateTaskSuccess = createAction(
   '[todo page] update task success',
   props<{ todoTask: TodoTask }>()
 );
 
-export const deletePost = createAction(
+export const deleteTask = createAction(
   '[todo page] delete task',
   props<{ id: string }>()
 );
-export const deletePostSuccess = createAction(
+export const deleteTaskSuccess = createAction(
   '[todo page] delete task',
   props<{ id: string }>()
 );
 
-export const loadPosts = createAction('[todo page] load tasks');
-export const loadPostsSuccess = createAction(
+export const loadTask = createAction('[todo page] load tasks');
+export const loadTaskSuccess = createAction(
   '[todo page] load task success',
   props<{ tasks: TodoTask[] }>()
 );

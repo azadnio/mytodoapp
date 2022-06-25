@@ -12,7 +12,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 
 import { StoreModule } from '@ngrx/store';
@@ -20,11 +20,15 @@ import { StoreModule } from '@ngrx/store';
 import { postsReducer } from './state/todo.reducers';
 import { PostsEffects } from './state/todo.effects';
 import { EffectsModule } from '@ngrx/effects';
+import { CreateTaskComponent } from './create-task/create-task.component';
+import { TaskListsComponent } from './task-lists/task-lists.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PieChartComponent
+    PieChartComponent,
+    CreateTaskComponent,
+    TaskListsComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +36,7 @@ import { EffectsModule } from '@ngrx/effects';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
 
     MatCardModule,
     MatInputModule,

@@ -1,0 +1,33 @@
+<div class="container">
+  <h3>Create Task</h3>
+
+  <form [formGroup]="postForm" (ngSubmit)="onAddPost()">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input matInput type="text" formControlName="title">
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field  appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+
+      <br>
+
+      <div class="form-btns">
+        <button mat-button class="create-btn"
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!postForm.valid"
+          mat-flat-button color="primary"
+        >
+          Create
+        </button>
+      </div>
+  </form>
+
+
+</div>

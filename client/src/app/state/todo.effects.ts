@@ -1,14 +1,14 @@
 
 import { map, mergeMap, switchMap } from 'rxjs/operators';
 import {
-  addPost,
-  addPostSuccess,
-  deletePost,
-  deletePostSuccess,
-  loadPosts,
-  loadPostsSuccess,
-  updatePost,
-  updatePostSuccess,
+  ddTask,
+  addTaskSuccess,
+  deleteTask,
+  deleteTaskSuccess,
+  loadTask,
+  loadTaskSuccess,
+  updateTask,
+  updateTaskSuccess,
 } from './todo.actions';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
@@ -21,11 +21,11 @@ export class PostsEffects {
 
   loadPosts$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(loadPosts),
+      ofType(loadTask),
       mergeMap((action) => {
         return this.todoService.getTasks().pipe(
           map((tasks: any) => {
-            return loadPostsSuccess({ tasks });
+            return loadTaskSuccess({ tasks });
           })
         );
       })
@@ -34,7 +34,7 @@ export class PostsEffects {
 
   addPost$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(addPost),
+      ofType(ddTask),
       mergeMap((action) => {
         return this.todoService.addTask(action.todoTask).pipe(
           map((data: any) => {
@@ -43,7 +43,7 @@ export class PostsEffects {
               id: data.id,
               time: data.time
             };
-            return addPostSuccess({ todoTask });
+            return addTaskSuccess({ todoTask });
           })
         );
       })
@@ -52,11 +52,11 @@ export class PostsEffects {
 
   updatePost$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(updatePost),
+      ofType(updateTask),
       switchMap((action) => {
         return this.todoService.editTask(action.todoTask).pipe(
           map((data) => {
-            return updatePostSuccess({ todoTask: action.todoTask });
+            return updateTaskSuccess({ todoTask: action.todoTask });
           })
         );
       })
@@ -65,11 +65,11 @@ export class PostsEffects {
 
   deletePost$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(deletePost),
+      ofType(deleteTask),
       switchMap((action) => {
         return this.todoService.deleteTask(action.id).pipe(
           map((data) => {
-            return deletePostSuccess({ id: action.id });
+            return deleteTaskSuccess({ id: action.id });
           })
         );
       })

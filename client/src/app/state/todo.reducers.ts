@@ -1,17 +1,15 @@
 import {
-  deletePost,
-  updatePost,
-  loadPostsSuccess,
-  addPostSuccess,
-  updatePostSuccess,
-  deletePostSuccess,
+  loadTaskSuccess,
+  addTaskSuccess,
+  updateTaskSuccess,
+  deleteTaskSuccess,
 } from './todo.actions';
 import { Action, createReducer, on } from '@ngrx/store';
 import { initialState, todoTaskState } from './todo.state';
 
 const _postsReducer = createReducer(
   initialState,
-  on(addPostSuccess, (state, action) => {
+  on(addTaskSuccess, (state, action) => {
     let task = { ...action.todoTask };
 
     return {
@@ -20,7 +18,7 @@ const _postsReducer = createReducer(
     };
   }),
 
-  on(updatePostSuccess, (state, action) => {
+  on(updateTaskSuccess, (state, action) => {
     const updatedTask = state.tasks.map((post) => {
       return action.todoTask.id === post.id ? action.todoTask : post;
     });
@@ -31,7 +29,7 @@ const _postsReducer = createReducer(
     };
   }),
 
-  on(deletePostSuccess, (state, action) => {
+  on(deleteTaskSuccess, (state, action) => {
     const updatedPosts = state.tasks.filter((post) => {
       return  post.id !==  +action.id;
     });
@@ -42,7 +40,7 @@ const _postsReducer = createReducer(
     };
   }),
 
-  on(loadPostsSuccess, (state, action) => {
+  on(loadTaskSuccess, (state, action) => {
     return {
       ...state,
       tasks: action.tasks,

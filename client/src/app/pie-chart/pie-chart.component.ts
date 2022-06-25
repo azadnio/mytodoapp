@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { getTasksOverview } from '../state/todo.selector';
 
 declare var google: any;
 
@@ -7,23 +9,26 @@ declare var google: any;
   templateUrl: './pie-chart.component.html',
   styleUrls: ['./pie-chart.component.scss']
 })
-export class PieChartComponent implements OnInit {
+export class PieChartComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
     // Load the Visualization API and the corechart package.
     google.charts.load('current', {'packages':['corechart']});
 
     // Set a callback to run when the Google Visualization API is loaded.
-    google.charts.setOnLoadCallback(this.drawChart);
+    // google.charts.setOnLoadCallback(this.drawChart);
 
-    setTimeout(() => {
-      this.drawChart({
-        'Completed': 0.78,
-        'Pending': 0.21
-      });
-     }, 5000);
+    google.charts.setOnLoadCallback(() =>
+        this.store.select(getTasksOverview).subscribe((data) => this.drawChart({ 'Completed': data.completed, 'Pending': data.pending })
+      )
+    );
+
+  }
+
+  ngOnDestroy(): void {
+
   }
 
   drawChart(chartData: any = { 'Completed': 0, 'Pending': 0 }) {
@@ -52,8 +57,6 @@ export class PieChartComponent implements OnInit {
     chart.draw(data, options);
 
   }
-
-
 
 }
 

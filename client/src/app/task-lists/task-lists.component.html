@@ -1,0 +1,26 @@
+<div class="container">
+  <h3>List of tasks</h3>
+
+  <mat-expansion-panel *ngFor="let taskItem of tasks$ | async">
+    <mat-expansion-panel-header [ngClass]="taskItem.isActive ? 'active' : 'finished' ">
+      <mat-panel-title>
+        <mat-icon class="done-icon" *ngIf="!taskItem.isActive">check_circle</mat-icon>
+        <mat-icon class="pending-icon" *ngIf="taskItem.isActive">bookmark</mat-icon>
+        {{ taskItem.title }}
+        <small *ngIf="taskItem.isActive"> &nbsp;&nbsp; Pending </small>
+      </mat-panel-title>
+      <mat-panel-description>
+        {{taskItem.time | date:'medium'}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <p>
+      {{ taskItem.description }}
+    </p>
+
+    <mat-action-row>
+      <button mat-button color="primary" mat-stroked-button (click)="markAsDone(taskItem)" *ngIf="taskItem.isActive">Mark As Done</button>
+      <button mat-button color="warn" mat-stroked-button (click)="deleteTask(taskItem.id)">Delete</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</div>

@@ -19,11 +19,11 @@ app.use(bodyParser.json());
 if (process.env.NODE_ENV === 'prod')
     app.use(express.static(path.join(__dirname, '../ui/build')));
 
-app.get('/api/tasks', (req, res) => { console.log('loading task')
+app.get('/api/tasks', (req, res) => { console.log('loading task', new Date())
     res.json(tasks);
 });
 
-app.post('/api/task', (req, res) => { console.log('posting task')
+app.post('/api/task', (req, res) => { console.log('posting task', new Date())
     const task = req.body.task; 
     
     task.id = (new Date()).getTime(),
@@ -33,7 +33,7 @@ app.post('/api/task', (req, res) => { console.log('posting task')
     res.json({status:true, id: task.id, time: task.time, message: `task ${task.id} addedd`});
 });
 
-app.put('/api/task', (req, res) => { console.log('updating task')
+app.put('/api/task', (req, res) => { console.log('updating task', new Date())
     const task = req.body.task;
     tasks = tasks.map(tsk => {
         if(tsk.id === task.id) tsk = task;
@@ -42,7 +42,7 @@ app.put('/api/task', (req, res) => { console.log('updating task')
     res.json({status:true, message: `task ${task.id} edited`});
 });
   
-app.delete('/api/task/:id', (req, res) => { console.log('deleting task')
+app.delete('/api/task/:id', (req, res) => { console.log('deleting task', new Date())
     
     const id = req.params.id;
     tasks = tasks.filter(tsk => tsk.id !== id)
