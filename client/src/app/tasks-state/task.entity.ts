@@ -4,4 +4,5 @@ export class Task {
   description?: string;
   id?: number;
   time?: Date;
+  isActive?: boolean;
 }

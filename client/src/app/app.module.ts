@@ -15,6 +15,12 @@ import {MatIconModule} from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 
+import { StoreModule } from '@ngrx/store';
+
+import { postsReducer } from './state/todo.reducers';
+import { PostsEffects } from './state/todo.effects';
+import { EffectsModule } from '@ngrx/effects';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +37,10 @@ import { PieChartComponent } from './pie-chart/pie-chart.component';
     MatInputModule,
     MatButtonModule,
     MatExpansionModule,
-    MatIconModule
+    MatIconModule,
+
+    StoreModule.forRoot({'tasks': postsReducer}),
+    EffectsModule.forRoot([PostsEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

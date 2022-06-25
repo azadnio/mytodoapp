@@ -37,7 +37,7 @@
 
   <h3>List of tasks</h3>
 
-  <mat-expansion-panel *ngFor="let taskItem of tasks">
+  <mat-expansion-panel *ngFor="let taskItem of tasks$ | async">
     <mat-expansion-panel-header [ngClass]="taskItem.isActive ? 'active' : 'finished' ">
       <mat-panel-title>
         <mat-icon class="done-icon" *ngIf="!taskItem.isActive">check_circle</mat-icon>
