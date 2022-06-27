@@ -1,7 +1,7 @@
 
 import { map, mergeMap, switchMap } from 'rxjs/operators';
 import {
-  ddTask,
+  addTask,
   addTaskSuccess,
   deleteTask,
   deleteTaskSuccess,
@@ -34,7 +34,7 @@ export class PostsEffects {
 
   addPost$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ddTask),
+      ofType(addTask),
       mergeMap((action) => {
         return this.todoService.addTask(action.todoTask).pipe(
           map((data: any) => {

@@ -2,7 +2,7 @@
 import { createAction, props } from '@ngrx/store';
 import { TodoTask } from '../task.model';
 
-export const ddTask = createAction('[todo page] add task', props<{ todoTask: TodoTask }>());
+export const addTask = createAction('[todo page] add task', props<{ todoTask: TodoTask }>());
 export const addTaskSuccess = createAction(
   '[todo page] add task success',
   props<{ todoTask: TodoTask }>()

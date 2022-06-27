@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { ddTask } from '../state/todo.actions';
+import { addTask } from '../state/todo.actions';
 import { AppState, TodoTask } from '../task.model';
 
 @Component({
@@ -39,8 +39,14 @@ export class CreateTaskComponent implements OnInit {
     const todoTask: TodoTask = {
       title: this.postForm.value.title,
       description: this.postForm.value.description,
+      isActive: true
     };
 
-    this.store.dispatch(ddTask({ todoTask }));
+    this.store.dispatch(addTask({ todoTask }));
   }
+
+  get f() {
+    return this.postForm.controls;
+  }
+
 }

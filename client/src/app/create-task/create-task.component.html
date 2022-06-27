@@ -8,12 +8,30 @@
         <input matInput type="text" formControlName="title">
       </mat-form-field>
 
+      <div class="error" *ngIf="postForm.get('title')?.touched && !postForm.get('title')?.valid">
+        <div *ngIf="f['title'].errors && f['title'].errors['required']">
+          Title is required
+        </div>
+        <div *ngIf="f['title'].errors && f['title'].errors['minlength']">
+          Title should be minimum 6 characters
+        </div>
+      </div>
+
       <br>
 
       <mat-form-field  appearance="outline">
         <mat-label>Description</mat-label>
         <textarea matInput formControlName="description"></textarea>
       </mat-form-field>
+
+      <div class="error" *ngIf="postForm.get('description')?.touched && !postForm.get('description')?.valid">
+        <div *ngIf="f['description'].errors && f['description'].errors['required']">
+          Title is required
+        </div>
+        <div *ngIf="f['description'].errors && f['description'].errors['minlength']">
+          Title should be minimum 10 characters
+        </div>
+      </div>
 
       <br>
 

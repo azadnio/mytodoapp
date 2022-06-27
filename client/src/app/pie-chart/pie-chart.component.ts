@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 import { getTasksOverview } from '../state/todo.selector';
 
 declare var google: any;
@@ -11,24 +12,25 @@ declare var google: any;
 })
 export class PieChartComponent implements OnInit, OnDestroy {
 
+  subscription: Subscription = new Subscription;
+
   constructor(private store: Store) { }
 
   ngOnInit(): void {
+
     // Load the Visualization API and the corechart package.
     google.charts.load('current', {'packages':['corechart']});
 
     // Set a callback to run when the Google Visualization API is loaded.
-    // google.charts.setOnLoadCallback(this.drawChart);
-
     google.charts.setOnLoadCallback(() =>
-        this.store.select(getTasksOverview).subscribe((data) => this.drawChart({ 'Completed': data.completed, 'Pending': data.pending })
+        this.subscription = this.store.select(getTasksOverview).subscribe((data) => this.drawChart({ 'Completed': data.completed, 'Pending': data.pending })
       )
     );
 
   }
 
   ngOnDestroy(): void {
-
+    this.subscription.unsubscribe();
   }
 
   drawChart(chartData: any = { 'Completed': 0, 'Pending': 0 }) {
