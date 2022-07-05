@@ -14,7 +14,7 @@ export class ToDoService {
   rootURL = '/api';
 
   getTasks() {
-    return this.http.get(this.rootURL + '/tasks');
+    return this.http.get(this.rootURL + '/task');
   }
 
   addTask(task: any) {
