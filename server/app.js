@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const port = 8080;
 
 const taskRoutes = require('./routes/tasks');
+const authRoutes = require('./routes/auth');
 
 let NODE_ENV = process.env.NODE_ENV || 'prod'
 
@@ -15,8 +16,12 @@ app.use(bodyParser.json());
 if (NODE_ENV === 'prod')
     app.use(express.static(path.join(__dirname, './ui/built')));
 
+//authentication routes
+app.use('/api/auth', authRoutes);
+
 //task routes
 app.use('/api/task', taskRoutes);
+
 
 //run the built UI files
 app.get('/', (req,res) => {
