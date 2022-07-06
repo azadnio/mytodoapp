@@ -1,0 +1,29 @@
+
+login 
+
+curl --location --request POST 'http://localhost:8080/api/auth/login' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email": "azadnio@gmail.com",
+    "password": "azad12345"
+}'
+
+
+Generate OTP
+
+curl --location --request POST 'http://localhost:8080/api/auth/generate-otp' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "secret": "KYZC6Y2JEZ2GK6THMNTSKVBMKIXD4UZT"
+}
+'
+
+
+Validate OTP
+
+curl --location --request POST 'http://localhost:8080/api/auth/validate-otp' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "secret": "KYZC6Y2JEZ2GK6THMNTSKVBMKIXD4UZT",
+    "token": "762150"
+}'
