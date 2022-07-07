@@ -1,0 +1,18 @@
+.container {
+  margin: auto;
+  width: 50%;
+  min-width: 50em;
+
+  .error {
+    color: #e71616;
+    font-size: small;
+    font-style: italic;
+  }
+
+  .error-head {
+    color: #e71616;
+    padding: 10px;
+    font-style: italic;
+    text-align: center;
+  }
+}

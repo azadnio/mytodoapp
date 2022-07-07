@@ -7,6 +7,7 @@ const port = 8080;
 
 const taskRoutes = require('./routes/tasks');
 const authRoutes = require('./routes/auth');
+const authRoutes2 = require('./routes/auth2');
 
 let NODE_ENV = process.env.NODE_ENV || 'prod'
 
@@ -18,6 +19,9 @@ if (NODE_ENV === 'prod')
 
 //authentication routes
 app.use('/api/auth', authRoutes);
+
+//authentication by QR code
+app.use('/api/auth2', authRoutes2);
 
 //task routes
 app.use('/api/task', taskRoutes);

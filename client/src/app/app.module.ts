@@ -22,13 +22,17 @@ import { PostsEffects } from './state/todo.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { CreateTaskComponent } from './create-task/create-task.component';
 import { TaskListsComponent } from './task-lists/task-lists.component';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PieChartComponent,
     CreateTaskComponent,
-    TaskListsComponent
+    TaskListsComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

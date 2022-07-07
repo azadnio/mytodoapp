@@ -28,4 +28,15 @@ export class ToDoService {
   deleteTask(taskId: any) {
     return this.http.delete(`${this.rootURL}/task/${taskId}`);
   }
+
+
+  loginAuth2(email: any, password: any) {
+
+    return this.http.post(this.rootURL + '/auth2/login', { email, password });
+  }
+
+  validateAuth2(secret: any, token: any) {
+
+    return this.http.post(this.rootURL + '/auth2/validate-otp', { secret, token });
+  }
 }

@@ -1,0 +1,78 @@
+
+<div class="container">
+
+  <mat-card  class="login container">
+
+    <h3>Login</h3>
+
+      <div class="error-head">
+        {{errorMesssage}}
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()" *ngIf="!qrCode && !loginSucces">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Title</mat-label>
+          <input matInput type="text" formControlName="email" >
+        </mat-form-field>
+
+        <div class="error" *ngIf="loginForm.get('email')?.touched && !loginForm.get('email')?.valid">
+          <div *ngIf="f['email'].errors && f['email'].errors['required']">
+            Title is required
+          </div>
+          <div *ngIf="f['email'].errors && f['email'].errors['minlength']">
+            Title should be minimum 6 characters
+          </div>
+        </div>
+
+        <br>
+
+        <mat-form-field  appearance="outline">
+          <mat-label>Description</mat-label>
+          <input matInput  formControlName="password" type="password" >
+        </mat-form-field>
+
+        <div class="error" *ngIf="loginForm.get('password')?.touched && !loginForm.get('password')?.valid">
+          <div *ngIf="f['password'].errors && f['password'].errors['required']">
+            Title is required
+          </div>
+          <div *ngIf="f['password'].errors && f['password'].errors['minlength']">
+            Title should be minimum 6 characters
+          </div>
+        </div>
+
+        <br>
+
+        <div class="form-btns">
+          <button mat-button class="create-btn"
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!loginForm.valid"
+            mat-flat-button color="primary"
+          >
+            Login
+          </button>
+        </div>
+    </form>
+
+    <div class="qr-container" *ngIf="!loginSucces && qrCode">
+      <div>
+        <img [src]="qrCode">
+      </div>
+      <mat-form-field  appearance="outline">
+        <mat-label>Enter the Code</mat-label>
+        <input matInput #code >
+      </mat-form-field>
+
+      <button mat-flat-button class="create-btn" color="primary" class="btn btn-primary" (click)="submitCode(this.code.value)">
+            Submit
+          </button>
+    </div>
+
+    <div class="succes" *ngIf="loginSucces">
+      <p>Login Success</p>
+    </div>
+
+  </mat-card>
+
+</div>
