@@ -28,7 +28,6 @@ router
                 res.send({status, img: data, secret: secret.ascii});
             });
 
-            // res.send({ "secret": secret.base32, status });
         }
 
         //invalid email and password
